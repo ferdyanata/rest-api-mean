@@ -1,0 +1,23 @@
+{
+  "name": "rest-api-mean",
+  "version": "1.0.0",
+  "description": "Creating a REST API using the MEAN stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferdyanata/rest-api-mean.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ferdyanata/rest-api-mean/issues"
+  },
+  "homepage": "https://github.com/ferdyanata/rest-api-mean#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
