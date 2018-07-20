@@ -1,12 +1,17 @@
 // express helps us create dynamic apps easily
 const express = require('express');
-
 /**
  * set up express app
  * when we initialize express(), we are able to use its HTTP methods
  * such as GET, POST, PUT, DELETE.
  */
+
 const app = express();
+/**
+ * initialize routes so that api.js requires /api from each
+ * request.
+ */
+app.use('/api', require('./routes/api'));
 
 /**
  * creates a path for address to access the GET request.
