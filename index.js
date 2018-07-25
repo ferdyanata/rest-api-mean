@@ -1,5 +1,7 @@
 // express helps us create dynamic apps easily
 const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 /**
  * set up express app
  * when we initialize express(), we are able to use its HTTP methods
@@ -21,7 +23,10 @@ app.get('/api', function(req, res){
     /**
      * sends end as a response, otherwise it'll be in a loop looking for a response.
      */
-    res.send({name: 'Yoshi'});
+    res.send(
+        {
+            name: 'Yoshi'
+        });
     // res.end();
 });
 
