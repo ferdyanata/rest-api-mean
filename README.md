@@ -1,9 +1,19 @@
 # rest-api-mean
 Creating a REST API using the MEAN stack
 
+# How to run
+Run MongoDB by entering "C:\Program Files\MongoDB\Server\version number\bin\mongod.exe" in the CLI including the quotes.
+Open another CLI tab after installing nodemon as a dev dependency, type in npx nodemon.
+
+# Stack
+MongoDB, Express and NodeJS
+
 # dependencies
 **express**
-> The Express philosophy is to provide small, robust tooling for HTTP servers, making it a great solution for single page applications, web sites, hybrids, or public HTTP APIs.   
+> The Express philosophy is to provide small, robust tooling for HTTP servers, making it a great solution for single page applications, web sites, hybrids, or public HTTP APIs.
+
+**mongoose**
+> Adds a layer of methods fo easily save, edit, retrieve and delete data from mongodb. Also allows us to create our Models and Schemas easily.
 
 # dev dependencies
 **nodemon**
