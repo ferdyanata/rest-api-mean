@@ -13,11 +13,13 @@ routes.get('/ninjas', function(req, res){
   res.send({type: 'POST'});
 });
 
-routes.put('/ninjas', function(req, res){
+routes.put('/ninjas/:id', function(req, res){
   res.send({type: 'PUT'});
 });
 
-routes.delete('/ninjas', function(req, res){
+routes.delete('/ninjas:id', function(req, res){
   res.send({type: 'DELETE'});
 });
+
+// export this file so other files can use it
 module.exports = routes;
