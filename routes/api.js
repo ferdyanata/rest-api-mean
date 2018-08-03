@@ -12,7 +12,11 @@ routes.get('/ninjas', function (req, res) {
   });
 });
 
-routes.post('/ninjas', function (req, res) {
+/**
+ * 'next' argument in this method is the error handling middleware that returns 
+ * feedback to the user.
+ */
+routes.post('/ninjas', function (req, res, next) {
   // req.body will retrieve the name, rank and availability from ninja.js
   // var ninja = new Ninja(req.body);
   // save this data into the database upon posting
@@ -21,7 +25,7 @@ routes.post('/ninjas', function (req, res) {
   // create will automatically save new data onto database
   Ninja.create(req.body).then(function (ninja) {
     res.send(ninja);
-  });
+  }).catch(next);
 });
 
 routes.put('/ninjas/:id', function (req, res) {

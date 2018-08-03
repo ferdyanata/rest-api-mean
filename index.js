@@ -23,6 +23,17 @@ app.use(bodyParser.json());
 app.use('/api', require('./routes/api'));
 
 /**
+ * Error handling middleware
+ */
+app.use(function(err, req, res, next){
+    // console.log(err);
+    res.status(422).send(
+    {
+        error: err.message
+    });
+});
+
+/**
  * creates a path for address to access the GET request.
  */
 app.get('/api', function(req, res){
