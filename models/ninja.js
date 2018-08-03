@@ -19,6 +19,7 @@ const NinjaSchema = new Schema ({
 });
 
 // 'ninja' will put into our collection of models and mongoose will pluralize the word to Ninja when we try to access it in MongoDB
+// NinjaSchema is the Schema created above
 const Ninja = mongoose.model('ninja', NinjaSchema);
 
 // export it so other files can access
