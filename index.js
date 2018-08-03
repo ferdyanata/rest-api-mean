@@ -1,14 +1,21 @@
 // express helps us create dynamic apps easily
 const express = require('express');
 const bodyParser = require('body-parser');
+// using mongoose will allow MongoDB to find the database we created in models
 const mongoose = require('mongoose');
+
 /**
  * set up express app
  * when we initialize express(), we are able to use its HTTP methods
  * such as GET, POST, PUT, DELETE.
  */
-
 const app = express();
+// connect to mongodb
+mongoose.connect('mongodb://localhost/ninjago');
+mongoose.Promise = global.Promise;
+// allow us to extract data in raw json format
+app.use(bodyParser.json());
+
 /**
  * initialize routes so that api.js requires /api from each
  * request.

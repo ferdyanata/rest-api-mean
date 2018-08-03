@@ -1,9 +1,13 @@
-# rest-api-mean
+# REST API Project with MEN
 Creating a REST API using the MEAN stack
 
 # How to run
 Run MongoDB by entering "C:\Program Files\MongoDB\Server\version number\bin\mongod.exe" in the CLI including the quotes.
 Open another CLI tab after installing nodemon as a dev dependency, type in npx nodemon.
+
+# Software and Tools used
+**RoboMongo**
+>RoboMongo/Robo 3T is a GUI for MongoDB
 
 # Stack
 MongoDB, Express and NodeJS
