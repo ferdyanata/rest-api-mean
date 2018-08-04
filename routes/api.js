@@ -1,22 +1,32 @@
 const express = require('express');
 /**
- * creating an expreqs.routes() allows us to access its HTTP methods. 
+ * creating an express.router() allows us to access its HTTP methods. 
  * (GET, POST, PUT and DELETE)
  */
-const routes = express.Router();
+const router = express.Router();
 const Ninja = require('../models/ninja.js');
 
-routes.get('/ninjas', function (req, res) {
-  Ninja.find({}).then(function(ninja){
-    res.send(ninja);
-  });
+router.get('/ninjas', function (req, res, next) {
+  // aggregate().near is new in mongoose 5.0 +
+  Ninja.aggregate().near({
+    near: {
+      // GeoJSON uses a point system to map lng and lat coordinates
+      'type': 'Point',
+      'coordinates': [parseFloat(req.query.lng), parseFloat(req.query.lat)]
+    },
+    maxDistance: 100000,
+    spherical: true,
+    distanceField: "dis"
+  }).then(function (ninjas) {
+    res.send(ninjas);
+  }).catch(next);
 });
 
 /**
  * 'next' argument in this method is the error handling middleware that returns 
  * feedback to the user.
  */
-routes.post('/ninjas', function (req, res, next) {
+router.post('/ninjas', function (req, res, next) {
   // req.body will retrieve the name, rank and availability from ninja.js
   // var ninja = new Ninja(req.body);
   // save this data into the database upon posting
@@ -29,7 +39,7 @@ routes.post('/ninjas', function (req, res, next) {
   }).catch(next);
 });
 
-routes.put('/ninjas/:id', function (req, res) {
+router.put('/ninjas/:id', function (req, res) {
   // find the ninja and update its requested body
   Ninja.findByIdAndUpdate({
     _id: req.params.id
@@ -44,7 +54,7 @@ routes.put('/ninjas/:id', function (req, res) {
   });
 });
 
-routes.delete('/ninjas/:id', function (req, res) {
+router.delete('/ninjas/:id', function (req, res) {
   // Ninja.findByIdAndRemove is a mongoose method
   /**
    * find the user id and remove form db, then return a new list of ninja's available in the DB
@@ -57,4 +67,4 @@ routes.delete('/ninjas/:id', function (req, res) {
 });
 
 // export this file so other files can use it
-module.exports = routes;
+module.exports = router;

@@ -7,13 +7,15 @@ const geoSchema = new Schema({
     type: {
         // defines what type of input is required = String
         type: String,
-        default: "Point"
+        default: 'Point',
+        required: true
     },
     coordinates: {
         // define coordinates type as an array of numbers
+        required: [true, 'Coordinates are required'],
         type: [Number],
         // type of map we'd like to use = 2dsphere
-        index: "2dsphere"
+        index: '2dsphere'
     }
 });
 
