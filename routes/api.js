@@ -7,8 +7,8 @@ const routes = express.Router();
 const Ninja = require('../models/ninja.js');
 
 routes.get('/ninjas', function (req, res) {
-  res.send({
-    type: 'GET'
+  Ninja.find({}).then(function(ninja){
+    res.send(ninja);
   });
 });
 
@@ -25,18 +25,34 @@ routes.post('/ninjas', function (req, res, next) {
   // create will automatically save new data onto database
   Ninja.create(req.body).then(function (ninja) {
     res.send(ninja);
+    // next will tell the compiler to move onto the next middleware which is error handler
   }).catch(next);
 });
 
 routes.put('/ninjas/:id', function (req, res) {
-  res.send({
-    type: 'PUT'
+  // find the ninja and update its requested body
+  Ninja.findByIdAndUpdate({
+    _id: req.params.id
+  }, req.body).then(function (ninja) {
+    // return the new and updated ninja back to the console. If we don't do this
+    // it will return the previous ninja
+    Ninja.findOne({
+      _id: req.params.id
+    }).then(function (ninja) {
+      res.send(ninja);
+    });
   });
 });
 
 routes.delete('/ninjas/:id', function (req, res) {
-  res.send({
-    type: 'DELETE'
+  // Ninja.findByIdAndRemove is a mongoose method
+  /**
+   * find the user id and remove form db, then return a new list of ninja's available in the DB
+   */
+  Ninja.findByIdAndRemove({
+    _id: req.params.id
+  }).then(function (ninja) {
+    res.send(ninja);
   });
 });
 
