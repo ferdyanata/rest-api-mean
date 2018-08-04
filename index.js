@@ -24,9 +24,11 @@ app.use('/api', require('./routes/api'));
 
 /**
  * Error handling middleware
+ * next will tell the compiler to move onto the next middleware which is error handler
  */
 app.use(function(err, req, res, next){
     // console.log(err);
+    // status(422) is a processing error
     res.status(422).send(
     {
         error: err.message
