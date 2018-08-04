@@ -13,6 +13,11 @@ const app = express();
 // connect to mongodb
 mongoose.connect('mongodb://localhost/ninjago');
 mongoose.Promise = global.Promise;
+
+// serves as a middleware that provides static pages/information such as jpeg
+// as a result, it doesn't need to run the api functions
+app.use(express.static('public'));
+
 // allow us to extract data in raw json format
 app.use(bodyParser.json());
 
