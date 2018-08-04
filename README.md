@@ -1,5 +1,5 @@
-# REST API Project with MEN
-Creating a REST API using the MEAN stack
+# REST API Project with MERN stack
+Creating a REST API using the MERN stack
 
 # How to run
 Run MongoDB by entering "C:\Program Files\MongoDB\Server\version number\bin\mongod.exe" in the CLI including the quotes.
