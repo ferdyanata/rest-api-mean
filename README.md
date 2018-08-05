@@ -12,14 +12,14 @@ Open another CLI tab after installing nodemon as a dev dependency, type in npx n
 # Stack
 MongoDB, Express and NodeJS
 
-# dependencies
+# Dependencies
 **express**
 > The Express philosophy is to provide small, robust tooling for HTTP servers, making it a great solution for single page applications, web sites, hybrids, or public HTTP APIs.
 
 **mongoose**
 > Adds a layer of methods fo easily save, edit, retrieve and delete data from mongodb. Also allows us to create our Models and Schemas easily.
 
-# dev dependencies
+# Dev dependencies
 **nodemon**
 To install as a dev dependency:
 npm install nodemon --save-dev
