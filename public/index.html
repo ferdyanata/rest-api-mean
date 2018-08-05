@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Find ninjas in your area</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
@@ -21,6 +21,64 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://unpkg.com/react@15/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+
+    <!-- React component -->
+    <script type="text/babel">
+        var Ninjas = React.createClass({
+            getInitialState: function(){
+                return({
+                    ninjas: []
+                });
+            },
+            render:function()
+            {
+                var ninjas = this.state.ninjas;
+                ninjas = ninjas.map(function(ninja, index){
+                    // map each ninja in a list HTML
+                    return(
+                        <li key={index}>
+                            <span className={ninja.available}></span> 
+                            <span className="name">{ninja.name}</span> 
+                            <span className="rank">{ninja.rank}</span> 
+                            <span className="dist">{Math.floor(ninja.dist.calculated / 1000)} km</span>
+                        </li>
+                    )
+                });
+                return(
+                    <div id="ninja-container">
+                        <form id="search" onSubmit={this.handleSubmit}>
+                            <label>Enter your longitude: </label>
+                            <input type="text" ref="lng" placeholder="longitude" required/>
+                            <label>Enter your latitude: </label>
+                            <input type="text" ref="lat" placeholder="latitude" required/>
+                            <input type="submit" value="Find Ninjas"/> 
+                        </form>
+                        <ul>{ninjas}</ul>
+                    </div>
+                );
+            },
+            handleSubmit: function(e){
+                // prevent any 'default' behaviour set by the compiler, instead proceed
+                // to the functions below.
+                e.preventDefault();
+                // populate the values into the URL
+                var lng = this.refs.lng.value;
+                var lat = this.refs.lat.value;
+                
+                // once the values are processed, return the list of ninjas in 'data.json' format
+                fetch('/api/ninjas?lng=' + lng + '&lat=' + lat).then(function(data){
+                    return data.json();
+                    // json is from above data.json
+                }).then(json => {
+                    this.setState({
+                        ninjas: json
+                    });
+                });
+            }
+        });
+
+        ReactDOM.render(<Ninjas/>, document.getElementById('ninjas'));
+    </script>
 </body>
 
 </html>
